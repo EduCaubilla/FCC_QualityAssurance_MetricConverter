@@ -28,28 +28,16 @@ module.exports = function (app) {
       var object = {};
 
       if (returnNum == "invalid number") {
-        object = {
-          error: "invalid number",
-          string: toString
-        }
+        res.status(200).send("invalid number")
       }
       if (returnUnit == "invalid unit") {
-        object = {
-          error: "invalid unit",
-          string: toString
-        }
+        res.status(200).send("invalid unit")
       }
       if (returnUnit == "no unit") {
-        object = {
-          error: "no unit",
-          string: toString
-        }
+        res.status(200).send({error: "no unit", string: toString})
       }
       if (returnNum == "invalid number" && returnUnit == "invalid unit") {
-        object = {
-          error: "invalid number & unit",
-          string: toString
-        }
+       res.status(200).send("invalid number & unit")
       }
       
       if (returnNum !== "invalid number" && returnUnit !== "invalid unit" && returnUnit !== "no unit") {
@@ -59,12 +47,10 @@ module.exports = function (app) {
           returnNum: returnNum,
           returnUnit: returnUnit,
           string: toString
-        }
+        }      
+        res.status(200).json(object)
       }
-
-      console.log("BACK OBJECT", object);
       
-      res.status(200).json(object)
     });
     
 };
